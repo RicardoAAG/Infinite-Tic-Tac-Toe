@@ -17,7 +17,6 @@ function App() {
             <Route path="/" exact element={<Home />} />
             <Route path="/game" exact element={<Game />} />
           </Routes>
-          <Footer />
         </Router>
       </InfoProvider>
     </>

@@ -4,6 +4,7 @@ import './Home.css'
 import { PlayerContext } from '../InfoProvider'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
+import Footer from '../Footer';
 
 
 function Home() {
