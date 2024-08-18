@@ -51,6 +51,18 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .game-player-one {
+        margin-left: var(--margin-small);
+        margin-right: var(--margin-small);
+    }
+    
+    .game-player-two {
+        margin-left: var(--margin-small);
+        margin-right: var(--margin-small);
+    }
+}
+
 @media only screen and (max-width: 500px){
     .game-page {
         display: grid;
