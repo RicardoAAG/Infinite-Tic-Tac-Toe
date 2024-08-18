@@ -1,0 +1,107 @@
+.playerconfig {
+    display: grid;
+}
+
+.playerconfig-container {
+    height: 100%;
+    width: 100%;
+    border-top: 5px solid var(--color-border);
+    border-bottom: 5px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.one {
+    background-color: var(--color-player1);
+    border-left: 5px solid var(--color-border);
+    border-right: 2px solid var(--color-border);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: -5px 0 5px 1px black;
+    color: #2c2c2c;
+}
+
+.one-change {
+    background-color: var(--color-player1);
+    border: 5px solid var(--color-border);
+    width: calc(98vw - 2*var(--padding-large));
+    border-radius: 10px;
+    box-shadow: 0px 0 5px 1px black;
+    color: #2c2c2c;
+}
+
+.two {
+    background-color: var(--color-player2);
+    border-right: 5px solid var(--color-border);
+    border-left: 2px solid var(--color-border);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 0 5px 1px black;
+}
+
+.playerconfig-title-container{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.playerconfig-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-large);
+    margin: var(--margin-medium);
+    width: 40%;
+    max-width: 250px;
+    word-wrap: break-word;
+    word-break: break-all;
+    min-width: 80%;
+}
+
+.playerconfig-line {
+    margin: 0px;
+    border: 1px solid var(--color-border);
+}
+
+.playerconfig-options {
+    list-style: none;
+    display: grid;
+}
+
+.playerconfig-options-item {
+    margin-bottom: var(--margin-small);
+}
+
+.playerconfig-type {
+    font-size: var(--font-size-medium);
+    margin: var(--margin-small);
+}
+
+.playerconfig-input {
+    background-color: transparent;
+    border: none;
+    font-size: var(--font-size-medium);
+    border-bottom: 1px solid var(--color-border);
+    padding: 5px 10px 5px 10px;
+    width: 90%;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 500px){
+    .one{
+        background-color: var(--color-player1);
+        border: 5px solid var(--color-border);
+        width: calc(98vw - 2*var(--padding-large));
+        border-radius: 10px;
+        box-shadow: 0px 0 5px 1px black;
+        color: #2c2c2c;
+    }
+    .two{
+        background-color: var(--color-player2);
+        border: 5px solid var(--color-border);
+        width: calc(98vw - 2*var(--padding-large));
+        border-radius: 10px;
+        box-shadow: 0px 0 5px 1px black;
+        color: white;
+    }
+}

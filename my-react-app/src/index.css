@@ -1,0 +1,77 @@
+:root {
+  --color-background: #121212;
+  /* Fondo oscuro */
+  --color-primary: #1db954;
+  /* Verde brillante para botones y acentos */
+  --color-secondary: #bb86fc;
+  /* Púrpura para elementos secundarios */
+  --color-text: #e0e0e0;
+  /* Gris claro para el texto */
+  --color-border: #333333;
+  /* Gris oscuro para los bordes */
+  --color-accent: #ff4081;
+  /* Rosa brillante para detalles llamativos */
+  --color-hover: #1ed760;
+  /* Verde más claro para el estado hover de botones */
+  --color-disabled: #555555;
+  /* Gris medio para elementos deshabilitados */
+  --color-player1: #03a9f4;
+  /* Azul para el jugador 1 */
+  --color-player2: #ff5252;
+  /* Rojo para el jugador 2 */
+  --color-line: #ffffff;
+  /* Blanco para las líneas del tablero */
+  --color-win: #ffd700;
+  /* Dorado para resaltar la línea ganadora */
+
+  /* Tamaños de texto dinámicos */
+  --font-size-small: calc(0.8rem + 0.2vw);
+  /* Texto pequeño */
+  --font-size-medium: calc(1rem + 0.5vw);
+  /* Texto mediano */
+  --font-size-large: calc(1.5rem + 1vw);
+  /* Texto grande */
+  --font-size-xlarge: calc(2rem + 1.5vw);
+  /* Texto extra grande */
+
+  /* Tamaños de margen y padding dinámicos */
+  --padding-small: calc(0.5rem + 0.5vw);
+  --padding-medium: calc(1rem + 1vw);
+  --padding-large: calc(1.5rem + 1.5vw);
+  --margin-small: calc(0.5rem + 0.5vw);
+  --margin-medium: calc(1rem + 1vw);
+  --margin-large: calc(1.5rem + 1.5vw);
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1000px) {
+  :root{
+    --font-size-small: calc(0.8rem + 0.1vw);
+    /* Texto pequeño */
+    --font-size-medium: calc(1rem + 0.25vw);
+    /* Texto mediano */
+    --font-size-large: calc(1.5rem + .5vw);
+    /* Texto grande */
+    --font-size-xlarge: calc(2rem + .75vw);
+    /* Texto extra grande */
+  
+    /* Tamaños de margen y padding dinámicos */
+    --padding-small: calc(0.25rem + 0.5vw);
+    --padding-medium: calc(.5rem + 1vw);
+    --padding-large: calc(.75rem + 1.5vw);
+    --margin-small: calc(0.25rem + 0.5vw);
+    --margin-medium: calc(.5rem + 1vw);
+    --margin-large: calc(.75rem + 1.5vw);
+  }
+}

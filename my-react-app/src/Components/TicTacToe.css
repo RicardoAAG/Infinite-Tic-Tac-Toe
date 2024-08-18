@@ -1,0 +1,64 @@
+.tictactoe-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    color: white;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    padding: var(--padding-large);
+    width: var(--font-size-large);
+    height: var(--font-size-large);
+    font-size: 2em;
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-large);
+    text-shadow: 0px 0px 5px #9b9b9b;
+}
+
+.turn-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.turn {
+    color: white;
+    font-size: var(--font-size-large);
+    font-stretch: condensed;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px black;
+    margin: var(--margin-small);
+    width: 100%;
+    max-width: 200px;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 0px;
+    transition: color .5s ease;
+    word-wrap: break-word;
+    word-break:keep-all;
+}
+
+.click:hover {
+    color: var(--color-hover);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+    .turn {
+        max-width: 150px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .cell {
+        padding: var(--padding-large);
+        width: 50px;
+        height: 50px;
+    }
+}
