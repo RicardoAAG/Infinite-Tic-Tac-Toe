@@ -30,7 +30,7 @@ function Footer(props) {
                         }}
                     >
                         <div className="footer--container">
-                            <ref className="footer-exit" onClick={() => props.setVisible(!props.visible)}>X</ref>
+                            <p className="footer-exit" onClick={() => props.setVisible(!props.visible)}>X</p>
                             <div className="footer--title-container">
                                 <p className="footer--title-text">
                                     Thanks for trying my page ^^

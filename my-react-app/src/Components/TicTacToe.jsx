@@ -1,11 +1,12 @@
 import { React, useState, useEffect, useRef, useContext } from 'react'
 import './TicTacToe.css'
 import { PlayerContext } from './InfoProvider'
+import MinimaxBot from '../MinimaxBot'
 
 function TicTacToe(props) {
 
     const { player1, setPlayer1, player2, setPlayer2 } = useContext(PlayerContext)
-    const [test, setTest] = useState(['', '', '', '', '', '', '', '', ''])
+    const [board, setBoard] = useState(['', '', '', '', '', '', '', '', ''])
     const start = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     const oldestMove = useRef([[], []])
     const playerState = useRef('`s turn')
@@ -29,24 +30,24 @@ function TicTacToe(props) {
             setPlayer2(prevState => ({ ...prevState, victories: victory }))
         }
 
-        if (test[oldestMove.current[0][0]] === '') {
+        if (board[oldestMove.current[0][0]] === '') {
             oldestMove.current[0].shift()
         }
-        if (test[oldestMove.current[1][0]] === '') {
+        if (board[oldestMove.current[1][0]] === '') {
             oldestMove.current[1].shift()
         }
-    }, [test])
+    }, [board])
 
     function checkVictory(player) {
         return (
-            (test[0] === player.symbolC && test[1] === player.symbolC && test[2] === player.symbolC) ||
-            (test[3] === player.symbolC && test[4] === player.symbolC && test[5] === player.symbolC) ||
-            (test[6] === player.symbolC && test[7] === player.symbolC && test[8] === player.symbolC) ||
-            (test[0] === player.symbolC && test[3] === player.symbolC && test[6] === player.symbolC) ||
-            (test[1] === player.symbolC && test[4] === player.symbolC && test[7] === player.symbolC) ||
-            (test[2] === player.symbolC && test[5] === player.symbolC && test[8] === player.symbolC) ||
-            (test[0] === player.symbolC && test[4] === player.symbolC && test[8] === player.symbolC) ||
-            (test[6] === player.symbolC && test[4] === player.symbolC && test[2] === player.symbolC)
+            (board[0] === player.symbolC && board[1] === player.symbolC && board[2] === player.symbolC) ||
+            (board[3] === player.symbolC && board[4] === player.symbolC && board[5] === player.symbolC) ||
+            (board[6] === player.symbolC && board[7] === player.symbolC && board[8] === player.symbolC) ||
+            (board[0] === player.symbolC && board[3] === player.symbolC && board[6] === player.symbolC) ||
+            (board[1] === player.symbolC && board[4] === player.symbolC && board[7] === player.symbolC) ||
+            (board[2] === player.symbolC && board[5] === player.symbolC && board[8] === player.symbolC) ||
+            (board[0] === player.symbolC && board[4] === player.symbolC && board[8] === player.symbolC) ||
+            (board[6] === player.symbolC && board[4] === player.symbolC && board[2] === player.symbolC)
         )
     }
 
@@ -55,20 +56,31 @@ function TicTacToe(props) {
             if (turn.current) {
                 limitMovement.current[0]++
                 oldestMove.current[0].push(number)
-                setTest(prevState => ({ ...prevState, [number]: player1.symbolC }))
+                setBoard(prevState => {
+                    const newBoard = [...prevState]
+                    newBoard[number] = player1.symbolC
+                    return newBoard
+                })
             } else {
                 if (props.bot) {
-                    let random = Math.floor(Math.random() * 10)
-                    while (test[random] != '') {
-                        random = Math.floor(Math.random() * 10)
-                    }
+
+                    let botMove = MinimaxBot(board, player2.symbolC, player1.symbolC)
+
                     limitMovement.current[1]++
-                    oldestMove.current[1].push(random)
-                    setTest(prevState => ({ ...prevState, [random]: player2.symbolC }))
+                    oldestMove.current[1].push(botMove)
+                    setBoard(prevState => {
+                        const newBoard = [...prevState]
+                        newBoard[botMove] = player2.symbolC
+                        return newBoard
+                    })
                 } else {
                     limitMovement.current[1]++
                     oldestMove.current[1].push(number)
-                    setTest(prevState => ({ ...prevState, [number]: player2.symbolC }))
+                    setBoard(prevState => {
+                        const newBoard = [...prevState]
+                        newBoard[number] = player2.symbolC
+                        return newBoard
+                    })
                 }
             }
             turn.current = !turn.current
@@ -77,10 +89,18 @@ function TicTacToe(props) {
 
     function eraseOld() {
         if (limitMovement.current[0] == 4) {
-            setTest(prevState => ({ ...prevState, [oldestMove.current[0][0]]: '' }))
+            setBoard(prevState => {
+                const newBoard = [...prevState]
+                newBoard[oldestMove.current[0][0]] = ''
+                return newBoard
+            })
             limitMovement.current[0] = 3
         } else if (limitMovement.current[1] == 4) {
-            setTest(prevState => ({ ...prevState, [oldestMove.current[1][0]]: '' }))
+            setBoard(prevState => {
+                const newBoard = [...prevState]
+                newBoard[oldestMove.current[1][0]] = ''
+                return newBoard
+            })
             limitMovement.current[1] = 3
         }
     }
@@ -89,12 +109,20 @@ function TicTacToe(props) {
         if (limitMovement.current[1] == 3) {
             if (turn.current) {
             } else {
-                setTest(prevState => ({ ...prevState, [oldestMove.current[1][0]]: <small style={{ color: '#555555', textShadow: '0px 0px 5px #444444' }}>{player2.symbolC}</small> }))
+                setBoard(prevState => {
+                    const newBoard = [...prevState]
+                    newBoard[oldestMove.current[1][0]] = <small style={{ color: '#555555', textShadow: '0px 0px 5px #444444' }}>{player2.symbolC}</small>
+                    return newBoard
+                })
             }
         }
         if (limitMovement.current[0] == 3) {
             if (turn.current) {
-                setTest(prevState => ({ ...prevState, [oldestMove.current[0][0]]: <small style={{ color: '#555555', textShadow: '0px 0px 5px #444444' }}>{player1.symbolC}</small> }))
+                setBoard(prevState => {
+                    const newBoard = [...prevState]
+                    newBoard[oldestMove.current[0][0]] = <small style={{ color: '#555555', textShadow: '0px 0px 5px #444444' }}>{player1.symbolC}</small>
+                    return newBoard
+                })
             }
         }
     }
@@ -106,7 +134,7 @@ function TicTacToe(props) {
             <section className="tictactoe">
                 <div className="tictactoe-container">
                     {start.map((value, index) => (
-                        < div key={index} className='cell' onClick={() => { handleCellClick(value, test[value]); prepareOld(); eraseOld() }}>{test[value]}</div>
+                        < div key={index} className='cell' onClick={() => { handleCellClick(value, board[value]); prepareOld(); eraseOld() }}>{board[value]}</div>
                     ))}
                 </div>
                 <div className="turn-container">

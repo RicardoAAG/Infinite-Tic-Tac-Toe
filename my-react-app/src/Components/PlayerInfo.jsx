@@ -25,10 +25,7 @@ function PlayerInfo(props) {
                         }</p>
                     </div>
                     <hr className='playerinfo-line' />
-                    <p className='playerinfo-description'>Victories: {props.number === 'one'
-                        ? player1.victories
-                        : (isBot ? 0 : player2.victories)
-                    }</p>
+                    <p className='playerinfo-description'>Victories: {props.number === 'one' ? player1.victories : player2.victories}</p>
                     <div className="playerinfo-victory-linea-container">
                         <ul className='playerinfo-victory-lines'>{victoryLines()}</ul>
                     </div>

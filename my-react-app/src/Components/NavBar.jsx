@@ -11,7 +11,7 @@ function NavBar() {
         <>
             <section className="navbar">
                 <nav className="navbar-container">
-                    <ref className="navbar-info" onClick={() => setInfoVisible(!infoVisible)}>HELP</ref>
+                    <p className="navbar-info" onClick={() => setInfoVisible(!infoVisible)}>HELP</p>
                     <Link className="navbar-title" to="/">INFINITE TIC TAC TOE</Link>
                 </nav>
             </section>
